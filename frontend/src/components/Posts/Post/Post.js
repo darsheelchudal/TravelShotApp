@@ -3,8 +3,11 @@ import { AiFillLike } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import { deletePost } from "../../../actions/posts";
 
 const Post = ({ post, setCurrentId }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <div class="relative w-full max-w-xs overflow-hidden rounded-lg bg-white shadow-md mx-auto">
@@ -39,7 +42,7 @@ const Post = ({ post, setCurrentId }) => {
             </span>
           </div>
           <div class="flex items-center justify-between">
-            <p>
+            <button>
               <a
                 href="#"
                 class="flex items-center rounded-md bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
@@ -49,16 +52,16 @@ const Post = ({ post, setCurrentId }) => {
                 </span>
                 Like
               </a>
-            </p>
-            <a
-              href="#"
-              class="flex items-center rounded-md bg-red-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+            </button>
+            <button
+              className="flex items-center rounded-md bg-red-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+              onClick={() => dispatch(deletePost(post._id))}
             >
               Delete
               <span class="text-sm font-bold text-white-900">
                 <MdDelete />
               </span>
-            </a>
+            </button>
           </div>
         </div>
       </div>
