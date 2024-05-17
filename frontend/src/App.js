@@ -84,8 +84,8 @@ const App = () => {
       </div>
 
       <div className="container">
-        <Posts />
         <Form />
+        <Posts />
       </div>
     </>
   );

@@ -10,7 +10,6 @@ const Posts = () => {
     <>
       <div>POSTS</div>
       <Post />
-      <Post />
     </>
   );
 };
