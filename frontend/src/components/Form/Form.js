@@ -3,13 +3,14 @@ import Post from "../Posts/Post/Post";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { createPosts } from "../../actions/posts";
+import { AiFillLike } from "react-icons/ai";
 
 const Form = () => {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
     message: "",
-    tags: "",
+    tags: [],
     selectedFile: "",
   });
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Form = () => {
   const clear = () => {};
   return (
     <>
-      <div class="sm:w-[38rem] mx-auto my-2 overflow-hidden rounded-2xl bg-white shadow-lg sm:max-w-lg">
+      <div class="sm:w-[38rem] mx-auto my-20 overflow-hidden rounded-2xl bg-white shadow-lg sm:max-w-lg">
         <div class="bg-green-500 px-10 py-10 text-center text-white">
           <p class="font-serif text-2xl font-semibold tracking-wider">
             Create your memory by adding a post
@@ -47,7 +48,7 @@ const Form = () => {
                 placeholder="Title"
                 value={postData.title}
                 onChange={(e) =>
-                  setPostData({ ...setPostData, title: e.target.value })
+                  setPostData({ ...postData, title: e.target.value })
                 }
               />
             </label>
@@ -58,7 +59,7 @@ const Form = () => {
                 placeholder="Message"
                 value={postData.message}
                 onChange={(e) =>
-                  setPostData({ ...setPostData, message: e.target.value })
+                  setPostData({ ...postData, message: e.target.value })
                 }
               ></textarea>
             </label>
@@ -69,7 +70,7 @@ const Form = () => {
                 placeholder="Tags"
                 value={postData.tags}
                 onChange={(e) =>
-                  setPostData({ ...setPostData, tags: e.target.value })
+                  setPostData({ ...postData, tags: e.target.value })
                 }
               />
             </label>
