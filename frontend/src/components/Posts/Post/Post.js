@@ -5,6 +5,7 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { deletePost } from "../../../actions/posts";
+import { likePost } from "../../../actions/posts";
 
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
@@ -42,16 +43,15 @@ const Post = ({ post, setCurrentId }) => {
             </span>
           </div>
           <div class="flex items-center justify-between">
-            <button>
-              <a
-                href="#"
-                class="flex items-center rounded-md bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
-              >
-                <span class="text-sm font-bold text-white-900">
-                  <AiFillLike />
-                </span>
-                Like
-              </a>
+            <button
+              class="flex items-center rounded-md bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+              onClick={() => dispatch(likePost(post._id))}
+            >
+              <span class="text-sm font-bold text-white-900">
+                <AiFillLike />
+              </span>
+              Like
+              {post.likeCount}
             </button>
             <button
               className="flex items-center rounded-md bg-red-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
