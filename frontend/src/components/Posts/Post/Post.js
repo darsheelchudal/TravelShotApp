@@ -4,7 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import moment from "moment";
 
-const Post = ({ post }) => {
+const Post = ({ post, setCurrentId }) => {
   return (
     <>
       <div class="relative w-full max-w-xs overflow-hidden rounded-lg bg-white shadow-md mx-auto">
@@ -19,16 +19,18 @@ const Post = ({ post }) => {
         <span class="absolute top-0 py-6 left-0 w-28 text-center text-1xl text-white">
           {moment(post.createdAt).fromNow()}
         </span>
-        <span class="absolute top-0 py-5 right-0 w-50 text-center text-4xl text-white">
-          <BiDotsHorizontalRounded />
-        </span>
+        <button type="submit" onClick={() => setCurrentId(post._id)}>
+          <span class="absolute top-0 py-5 right-0 w-50 text-center text-4xl text-white">
+            <BiDotsHorizontalRounded />
+          </span>
+        </button>
 
         <div class="mt-4 px-5 pb-5">
           <span class="font-bold text-xl"> Creator : {post.creator}</span>
           <br />
           <span class="font-bold text-green-500"> Title : {post.title}</span>
           <br />
-          <span class="text-green-800"> Description : {post.title}</span>
+          <span class="text-green-800"> Description : {post.message}</span>
 
           <a href="#"></a>
           <div class="mt-2.5 mb-5 flex items-center">

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Post from "../Posts/Post/Post";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { createPosts } from "../../actions/posts";
 import { AiFillLike } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { updatedPost } from "../../actions/posts";
+//GET THE CURRENT ID
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -13,18 +16,41 @@ const Form = () => {
     tags: [],
     selectedFile: "",
   });
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((p) => p._id === currentId) : null
+  );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (post) {
+      setPostData(post);
+    }
+  }, [post]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPosts(postData));
+    if (currentId) {
+      dispatch(updatedPost(currentId, postData));
+    } else {
+      dispatch(createPosts(postData));
+    }
+    clear();
   };
-  const clear = () => {};
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: [],
+      selectedFile: "",
+    });
+  };
   return (
     <>
       <div class="sm:w-[38rem] mx-auto my-20 overflow-hidden rounded-2xl bg-white shadow-lg sm:max-w-lg">
         <div class="bg-green-500 px-10 py-10 text-center text-white">
           <p class="font-serif text-2xl font-semibold tracking-wider">
-            Create your memory by adding a post
+            {currentId ? "Editing" : "Create"} your memory by adding a post
           </p>
         </div>
 
@@ -94,7 +120,10 @@ const Form = () => {
             <button class="mt-4 rounded-full bg-blue-800 px-10 py-2 font-semibold text-white">
               Submit
             </button>
-            <button class="mx-10 mt-4 rounded-full bg-red-800 px-10 py-2 font-semibold text-white">
+            <button
+              class="mx-10 mt-4 rounded-full bg-red-800 px-10 py-2 font-semibold text-white"
+              onClick={clear}
+            >
               Clear
             </button>
           </form>
