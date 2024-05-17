@@ -16,10 +16,7 @@ const Post = ({ post }) => {
           />
         </a>
 
-        <span class="absolute top-0 py-6 left-0 w-28 text-center text-3xl text-white">
-          {post.creator}
-        </span>
-        <span class="absolute top-0 py-20 left-0 w-28 text-center text-1xl text-white">
+        <span class="absolute top-0 py-6 left-0 w-28 text-center text-1xl text-white">
           {moment(post.createdAt).fromNow()}
         </span>
         <span class="absolute top-0 py-5 right-0 w-50 text-center text-4xl text-white">
@@ -27,11 +24,13 @@ const Post = ({ post }) => {
         </span>
 
         <div class="mt-4 px-5 pb-5">
-          <a href="#">
-            <h6 class="text-xl font-semibold tracking-tight text-slate-900">
-              {post.title}
-            </h6>
-          </a>
+          <span class="font-bold text-xl"> Creator : {post.creator}</span>
+          <br />
+          <span class="font-bold text-green-500"> Title : {post.title}</span>
+          <br />
+          <span class="text-green-800"> Description : {post.title}</span>
+
+          <a href="#"></a>
           <div class="mt-2.5 mb-5 flex items-center">
             <span class="mr-2 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">
               # {post.tags}
