@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
 import memories from "./images/memories.png";
+import { useDispatch } from "react-redux";
+import { getPosts } from "./actions/posts";
+import "./index.css";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
   return (
     <>
-      <div class="h-screen lg:flex">
-        <div class="ml-auto lg:w-9/12 xl:w-7/12">
-          <header class="relative mx-auto flex max-w-screen-md flex-col overflow-hidden px-4 py-4 text-gray-900 md:flex-row md:items-center lg:mr-0">
+      <div className="h-screen lg:flex">
+        <div className="ml-auto lg:w-9/12 xl:w-7/12">
+          <header className="relative mx-auto flex max-w-screen-md flex-col overflow-hidden px-4 py-4 text-gray-900 md:flex-row md:items-center lg:mr-0">
             <a
               href="#"
-              class="flex cursor-pointer items-center whitespace-nowrap text-2xl font-black"
+              className="flex cursor-pointer items-center whitespace-nowrap text-2xl font-black"
             >
-              <span class="mr-2 text-4xl text-green-500">
+              <span className="mr-2 text-4xl text-green-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
@@ -31,47 +39,47 @@ const App = () => {
               </span>
               TRAVEL SHOTS
             </a>
-            <input type="checkbox" class="peer hidden" id="navbar-open" />
+            <input type="checkbox" className="peer hidden" id="navbar-open" />
             <label
-              class="absolute top-5 right-7 cursor-pointer md:hidden"
+              className="absolute top-5 right-7 cursor-pointer md:hidden"
               for="navbar-open"
             >
-              <span class="sr-only">Toggle Navigation</span>
+              <span className="sr-only">Toggle Navigation</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                stroke-width="2"
+                strokeWidth="2"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
             </label>
           </header>
 
-          <div class="mb-20 mt-40 px-4 sm:max-w-xl md:max-w-full md:px-24 lg:ml-auto lg:max-w-screen-md lg:px-8">
-            <div class="flex flex-col items-center justify-between lg:flex-row">
-              <div class="max-w-xl text-center lg:max-w-lg lg:pr-5 lg:text-left">
-                <h2 class="mb-6 max-w-lg text-3xl leading-snug tracking-tight text-green-600 sm:text-5xl sm:leading-snug">
-                  <span class="my-1 inline-block font-serif font-bold text-green-600">
+          <div className="mb-20 mt-40 px-4 sm:max-w-xl md:max-w-full md:px-24 lg:ml-auto lg:max-w-screen-md lg:px-8">
+            <div className="flex flex-col items-center justify-between lg:flex-row">
+              <div className="max-w-xl text-center lg:max-w-lg lg:pr-5 lg:text-left">
+                <h2 className="mb-6 max-w-lg text-3xl leading-snug tracking-tight text-green-600 sm:text-5xl sm:leading-snug">
+                  <span className="my-1 inline-block font-serif font-bold text-green-600">
                     Post your Travel Snapshots here
                   </span>
                   and keep it for the future with unlimited cloud storage
                 </h2>
-                <p class="text-base text-gray-700">
+                <p className="text-base text-gray-700">
                   Create posts online and like each other's travel photos.
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div class="relative my-auto hidden h-full bg-green-50 text-green-600 lg:block lg:w-3/12 xl:w-5/12">
-          <img class="h-full w-full object-cover" src={memories} alt="" />
+        <div className="relative my-auto hidden h-full bg-green-50 text-green-600 lg:block lg:w-3/12 xl:w-5/12">
+          <img className="h-full w-full object-cover" src={memories} alt="" />
         </div>
       </div>
 
