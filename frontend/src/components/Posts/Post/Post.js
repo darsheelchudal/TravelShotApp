@@ -50,8 +50,11 @@ const Post = ({ post, setCurrentId }) => {
               <span class="text-sm font-bold text-white-900">
                 <AiFillLike />
               </span>
-              Like
-              {post.likeCount}
+              <span class="text-sm font-bold text-white-900 ml-2">Like</span>
+
+              <span class="text-sm font-bold text-white-900 ml-2">
+                {post.likeCount}
+              </span>
             </button>
             <button
               className="flex items-center rounded-md bg-red-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
